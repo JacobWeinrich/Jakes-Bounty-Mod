@@ -16,7 +16,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.lang.reflect.Type;
 import java.nio.file.Path;
@@ -30,42 +29,46 @@ public class PvpKeepInventory {
     private static final Path DATA_FILE = Path.of("config/pvpkeepinv.json");
     private static final Type DATA_TYPE = new TypeToken<HashSet<UUID>>() {}.getType();
 
-    public PvpKeepInventory() {
-        MinecraftForge.EVENT_BUS.register(this);
-    }
 
-    public static void register() {
-        // Register command events
-        MinecraftForge.EVENT_BUS.register(new PvpKeepInventory());
-    }
-
-    @SubscribeEvent
-    public void onCommandRegister(RegisterCommandsEvent event) {
-        CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("togglepvpkeepinv")
                 .requires(source -> source.hasPermission(2))
-                .then(Commands.argument("player", net.minecraft.commands.arguments.GameProfileArgument.gameProfile())
-                        .executes(ctx -> {
-                            ServerPlayer targetPlayer = ctx.getSource().getServer().getPlayerList()
-                                    .getPlayer(ctx.getSource().getEntity().getUUID());
+                .then(Commands.argument("player", net.minecraft.commands.arguments.EntityArgument.player())
+                        .then(Commands.literal("true")
+                                .executes(ctx -> {
+                                    // Get the target player from the argument
+                                    ServerPlayer targetPlayer = net.minecraft.commands.arguments.EntityArgument.getPlayer(ctx, "player");
+                                    UUID playerUUID = targetPlayer.getUUID();
 
-                            if (targetPlayer != null) {
-                                UUID playerUUID = targetPlayer.getUUID();
-                                if (enabledPlayers.contains(playerUUID)) {
-                                    enabledPlayers.remove(playerUUID);
-                                    ctx.getSource().sendSuccess(() -> Component.literal(targetPlayer.getName().getString() + " will no longer keep inventory on PvP death."), true);
-                                } else {
+                                    // Set to true: enable keep inventory
                                     enabledPlayers.add(playerUUID);
-                                    ctx.getSource().sendSuccess(() -> Component.literal(targetPlayer.getName().getString() + " will now keep inventory on PvP death."), true);
-                                }
-                                DataManager.saveData(DATA_FILE, enabledPlayers);
-                                return Command.SINGLE_SUCCESS;
-                            }
-                            return 0;
-                        })
+                                    ctx.getSource().sendSuccess(() -> Component.literal(
+                                            targetPlayer.getName().getString() + " will now keep inventory on PvP death."
+                                    ), true);
+                                    DataManager.saveData(DATA_FILE, enabledPlayers);
+                                    return Command.SINGLE_SUCCESS;
+                                })
+                        )
+                        .then(Commands.literal("false")
+                                .executes(ctx -> {
+                                    // Get the target player from the argument
+                                    ServerPlayer targetPlayer = net.minecraft.commands.arguments.EntityArgument.getPlayer(ctx, "player");
+                                    UUID playerUUID = targetPlayer.getUUID();
+
+                                    // Set to false: disable keep inventory
+                                    enabledPlayers.remove(playerUUID);
+                                    ctx.getSource().sendSuccess(() -> Component.literal(
+                                            targetPlayer.getName().getString() + " will no longer keep inventory on PvP death."
+                                    ), true);
+                                    DataManager.saveData(DATA_FILE, enabledPlayers);
+                                    return Command.SINGLE_SUCCESS;
+                                })
+                        )
                 )
         );
     }
+
+
 
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {

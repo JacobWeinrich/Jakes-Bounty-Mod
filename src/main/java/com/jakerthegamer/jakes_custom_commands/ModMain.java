@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.common.MinecraftForge;
 
 /* [Guide: ModMain.java is the entry point of your Forge mod.
    - The @Mod annotation registers this class with Forge using the unique mod ID "examplemod".
@@ -27,7 +28,6 @@ public class ModMain {
   public ModMain() {
     // [Guide: Retrieve the mod event bus for registering events during mod loading.]
     IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
     // [Guide: Register your mod’s blocks, items, and tile entities so they are initialized correctly.]
     ModRegistry.BLOCKS.register(eventBus);
     ModRegistry.ITEMS.register(eventBus);
@@ -35,6 +35,8 @@ public class ModMain {
     // [Guide: Initialize the configuration settings for your mod.]
     new ConfigManager();
     // [Guide: Add listeners for common and client-specific setup events.]
+    MinecraftForge.EVENT_BUS.register(this);
+    MinecraftForge.EVENT_BUS.register(new PvpKeepInventory());
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
   }
@@ -74,7 +76,8 @@ public class ModMain {
      *     loadArenaPositions();
      */
     LOGGER.info("Jakes Custom Commands: PvP Keep Inv command registered.");
-    PvpKeepInventory.register();
+                                    //added event.getDispatcher()
+    PvpKeepInventory.register(event.getDispatcher());
 
   }
   
