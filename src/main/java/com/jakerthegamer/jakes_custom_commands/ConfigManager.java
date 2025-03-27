@@ -1,4 +1,4 @@
-package com.yourname.myforgemod;
+package com.jakerthegamer.jakes_custom_commands;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import net.minecraftforge.common.ForgeConfigSpec;

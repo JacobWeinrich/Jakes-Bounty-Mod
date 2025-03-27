@@ -1,4 +1,4 @@
-package com.yourname.myforgemod;
+package com.jakerthegamer.jakes_custom_commands;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

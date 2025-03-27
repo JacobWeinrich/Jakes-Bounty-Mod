@@ -1,5 +1,6 @@
-package com.yourname.myforgemod;
+package com.jakerthegamer.jakes_custom_commands;
 
+import com.jakerthegamer.jakes_custom_commands.commands.PvpKeepInventory;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +21,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(ModMain.MODID)
 public class ModMain {
 
-  public static final String MODID = "examplemod"; // [Guide: Unique identifier for your mod; must be all lowercase.]
+  public static final String MODID = "jakes_custom_commands"; // [Guide: Unique identifier for your mod; must be all lowercase.]
   public static final Logger LOGGER = LogManager.getLogger(); // [Guide: Logger for outputting debug/info messages.]
 
   public ModMain() {
@@ -72,6 +73,8 @@ public class ModMain {
      *     LOGGER.info("MineColonyTax: Commands registered.");
      *     loadArenaPositions();
      */
+    LOGGER.info("Jakes Custom Commands: PvP Keep Inv command registered.");
+    PvpKeepInventory.register();
 
   }
   
