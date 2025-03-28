@@ -2,9 +2,6 @@
 	"ftbteams": {
 		"my_team": true
 	},
-	"sdmshoprework": {
-		"shop": true
-	},
 	"ftblibrary": {
 		"toggle.gamemode": true,
 		"toggle.rain": true,
