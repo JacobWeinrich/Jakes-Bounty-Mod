@@ -29,9 +29,9 @@ public class ModMain {
     // [Guide: Retrieve the mod event bus for registering events during mod loading.]
     IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
     // [Guide: Register your mod’s blocks, items, and tile entities so they are initialized correctly.]
-    ModRegistry.BLOCKS.register(eventBus);
-    ModRegistry.ITEMS.register(eventBus);
-    ModRegistry.TILE_ENTITIES.register(eventBus);
+    //ModRegistry.BLOCKS.register(eventBus);
+    //ModRegistry.ITEMS.register(eventBus);
+    //ModRegistry.TILE_ENTITIES.register(eventBus);
     // [Guide: Initialize the configuration settings for your mod.]
     new ConfigManager();
     // [Guide: Add listeners for common and client-specific setup events.]
