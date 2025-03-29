@@ -1,7 +1,13 @@
 package com.jakerthegamer.jakes_custom_commands;
 
 import com.jakerthegamer.jakes_custom_commands.commands.PvpKeepInventory;
+import com.jakerthegamer.jakes_custom_commands.commands.TempBan;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +43,7 @@ public class ModMain {
     // [Guide: Add listeners for common and client-specific setup events.]
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(new PvpKeepInventory());
+    MinecraftForge.EVENT_BUS.register(new TempBan());
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
   }
@@ -60,6 +67,18 @@ public class ModMain {
     // Initialize Mod Systems
     //TaxManager.initialize(event.getServer());
   }
+  @SubscribeEvent
+  public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+    LOGGER.info("Jakes Custom Commands: Player Joined checking Ban");
+    if (event.getEntity() instanceof ServerPlayer) {
+      ServerPlayer player = (ServerPlayer) event.getEntity();
+      TempBan.onPlayerJoin(player);
+      MinecraftServer server = player.getServer();
+    if (server != null & !TempBan.isBanned(player.getUUID())) {
+      server.getPlayerList().broadcastSystemMessage(Component.literal(player.getName().getString() + " has joined the server!"), false);
+    }
+    }
+  }
 
   /**
    * Registers commands for the mod
@@ -75,10 +94,18 @@ public class ModMain {
      *     LOGGER.info("MineColonyTax: Commands registered.");
      *     loadArenaPositions();
      */
-    LOGGER.info("Jakes Custom Commands: PvP Keep Inv command registered.");
-                                    //added event.getDispatcher()
+    LOGGER.info("Jakes Custom Commands: TogglePvpKeepInv Command registered.");
     PvpKeepInventory.register(event.getDispatcher());
+    LOGGER.info("Jakes Custom Commands: TempBan Command Register.");
+    TempBan.register(event.getDispatcher());
 
   }
-  
+
+  @SubscribeEvent
+  public void onServerChat(ServerChatEvent event) {
+    if (event.getMessage().getString().endsWith("joined the game")) {
+      event.setCanceled(true);
+    }
+  }
+
 }
