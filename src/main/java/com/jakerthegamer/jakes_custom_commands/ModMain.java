@@ -1,5 +1,6 @@
 package com.jakerthegamer.jakes_custom_commands;
 
+import com.jakerthegamer.jakes_custom_commands.commands.LocalChat;
 import com.jakerthegamer.jakes_custom_commands.commands.PvpKeepInventory;
 import com.jakerthegamer.jakes_custom_commands.commands.TempBan;
 import net.minecraft.network.chat.Component;
@@ -44,6 +45,7 @@ public class ModMain {
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(new PvpKeepInventory());
     MinecraftForge.EVENT_BUS.register(new TempBan());
+    MinecraftForge.EVENT_BUS.register(new LocalChat());
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
   }
@@ -98,6 +100,8 @@ public class ModMain {
     PvpKeepInventory.register(event.getDispatcher());
     LOGGER.info("Jakes Custom Commands: TempBan Command Register.");
     TempBan.register(event.getDispatcher());
+    LOGGER.info("Jakes Custom Commands: Local/Global Chat Commands Registered.");
+    LocalChat.registerCommands(event.getDispatcher());
 
   }
 
@@ -106,6 +110,7 @@ public class ModMain {
     if (event.getMessage().getString().endsWith("joined the game")) {
       event.setCanceled(true);
     }
+    LocalChat.onServerChat(event);
   }
 
 }

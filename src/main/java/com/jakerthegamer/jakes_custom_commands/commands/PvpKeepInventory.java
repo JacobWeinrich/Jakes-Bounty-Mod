@@ -92,7 +92,6 @@ public class PvpKeepInventory {
         }
     }
 
-
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {
         if (event.getEntity() instanceof ServerPlayer) {
