@@ -1,14 +1,11 @@
 package com.jakerthegamer.jakes_custom_commands;
 
-import com.jakerthegamer.jakes_custom_commands.commands.LocalChat;
+import com.jakerthegamer.jakes_custom_commands.classes.BountyManager;
+import com.jakerthegamer.jakes_custom_commands.classes.BountyPayoutQueueObject;
+import com.jakerthegamer.jakes_custom_commands.commands.BountyCommands;
 import com.jakerthegamer.jakes_custom_commands.commands.PvpKeepInventory;
-import com.jakerthegamer.jakes_custom_commands.commands.TempBan;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerPlayer;
+import com.jakerthegamer.jakes_custom_commands.events.BountySystemEvents;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
@@ -44,6 +41,7 @@ public class ModMain {
     // [Guide: Add listeners for common and client-specific setup events.]
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(new PvpKeepInventory());
+    MinecraftForge.EVENT_BUS.register(new BountySystemEvents());
     /*
     MinecraftForge.EVENT_BUS.register(new TempBan());
     MinecraftForge.EVENT_BUS.register(new LocalChat());
@@ -67,7 +65,9 @@ public class ModMain {
    */
   @SubscribeEvent
   public void onServerStarting(ServerStartingEvent event) {
-    LOGGER.info("Server starting: Initializing Mod");
+    LOGGER.info("Jakes Custom Commands: Server starting: Initializing Mod");
+    BountyManager.load();
+    BountyPayoutQueueObject.load();
     // Initialize Mod Systems
     //TaxManager.initialize(event.getServer());
   }
@@ -83,7 +83,6 @@ public class ModMain {
     }
     }
     */
-  }
 
   /**
    * Registers commands for the mod
@@ -92,6 +91,8 @@ public class ModMain {
   public void onRegisterCommands(RegisterCommandsEvent event) {
     LOGGER.info("Jakes Custom Commands: TogglePvpKeepInv Command registered.");
     PvpKeepInventory.register(event.getDispatcher());
+    LOGGER.info("Jakes Custom Commands: Bounty Commands registered.");
+    BountyCommands.register(event.getDispatcher());
     /* Disabled
     LOGGER.info("Jakes Custom Commands: TempBan Command Register.");
     TempBan.register(event.getDispatcher());
