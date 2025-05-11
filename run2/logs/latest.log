@@ -1,7 +1,98 @@
-[10May2025 00:00:19.562] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] [Dev: Bounty set on Player2 for $100 (expires in 10s)]
-[10May2025 00:01:00.806] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] [Dev: Bounty set on Player2 for $100 (expires in 10s)]
-[10May2025 00:01:15.474] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] ? 50
-[10May2025 00:01:30.941] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] ? 50
-[10May2025 00:01:32.635] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] ? 50
-[10May2025 00:01:39.971] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] [Dev: Bounty set on Player2 for $100 (expires in 10s)]
-[10May2025 00:01:55.002] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] ? 75
+[10May2025 13:20:19.362] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\jacob\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.10, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --username=Player2]
+[10May2025 13:20:19.369] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17 by Eclipse Adoptium; OS Windows 10 arch amd64 version 10.0
+[10May2025 13:20:19.516] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[10May2025 13:20:19.897] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[10May2025 13:20:20.211] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[10May2025 13:20:20.311] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/jacob/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[10May2025 13:20:20.335] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce RTX 3070 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 572.83, NVIDIA Corporation
+[10May2025 13:20:21.246] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\jacob\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.10\7a15037366722893d76a3d0b2e9d1fd13a63a22d\javafmllanguage-1.20.1-47.3.10.jar is missing mods.toml file
+[10May2025 13:20:21.253] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\jacob\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.10\e67d9b3451d64ccc812cbbd33c066bd3ebbf2167\lowcodelanguage-1.20.1-47.3.10.jar is missing mods.toml file
+[10May2025 13:20:21.261] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\jacob\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.10\2023f9726a509c5ba5a925cac934944066093de8\mclanguage-1.20.1-47.3.10.jar is missing mods.toml file
+[10May2025 13:20:21.295] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\jacob\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.10\523aa0cd9a773b2b56268d8689b2fb5c1f072941\fmlcore-1.20.1-47.3.10.jar is missing mods.toml file
+[10May2025 13:20:21.823] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 5 dependencies adding them to mods collection
+[10May2025 13:20:23.627] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[10May2025 13:20:23.657] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\jacob\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --username=Player2]
+[10May2025 13:20:24.104] [main/INFO] [mixin/]: Remapping refMap architectury-forge-refmap.json using C:\Users\jacob\Documents\github\Minecraft\templateforge1.20.1/build/createSrgToMcp/output.srg
+[10May2025 13:20:24.106] [main/INFO] [mixin/]: Remapping refMap architectury-common-refmap.json using C:\Users\jacob\Documents\github\Minecraft\templateforge1.20.1/build/createSrgToMcp/output.srg
+[10May2025 13:20:24.108] [main/INFO] [mixin/]: Remapping refMap sdm-core-common-common-refmap.json using C:\Users\jacob\Documents\github\Minecraft\templateforge1.20.1/build/createSrgToMcp/output.srg
+[10May2025 13:20:24.110] [main/INFO] [mixin/]: Remapping refMap ftb-library-common-refmap.json using C:\Users\jacob\Documents\github\Minecraft\templateforge1.20.1/build/createSrgToMcp/output.srg
+[10May2025 13:20:24.111] [main/INFO] [mixin/]: Remapping refMap sdm_economy-common-refmap.json using C:\Users\jacob\Documents\github\Minecraft\templateforge1.20.1/build/createSrgToMcp/output.srg
+[10May2025 13:20:24.114] [main/INFO] [mixin/]: Remapping refMap sdm_ui_lib-common-refmap.json using C:\Users\jacob\Documents\github\Minecraft\templateforge1.20.1/build/createSrgToMcp/output.srg
+[10May2025 13:20:24.117] [main/WARN] [mixin/]: Reference map 'sdmshoprework-common-refmap.json' for sdmshoprework-common.mixins.json could not be read. If this is a development environment you can ignore this message
+[10May2025 13:20:29.564] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 172 milliseconds
+[10May2025 13:20:31.348] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/jacob/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.10_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.10_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[10May2025 13:20:31.349] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/jacob/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.10_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.10_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[10May2025 13:20:31.377] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[10May2025 13:20:31.381] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Player2
+[10May2025 13:20:31.515] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
+[10May2025 13:20:31.872] [modloading-worker-0/INFO] [net.sixik.sdm_core.SDMCore/]: Environment is development!
+[10May2025 13:20:31.893] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.10, for MC 1.20.1 with MCP 20230612.114412
+[10May2025 13:20:31.893] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.3.10 Initialized
+[10May2025 13:20:31.961] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id architectury:sync_ids
+[10May2025 13:20:31.965] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id architectury:sync_ids
+[10May2025 13:20:31.965] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdm_economy:update_client_data
+[10May2025 13:20:31.965] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id ftblibrary:edit_nbt
+[10May2025 13:20:31.965] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:sync_shop
+[10May2025 13:20:31.968] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_edit_mode
+[10May2025 13:20:31.971] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id ftblibrary:edit_nbt_response
+[10May2025 13:20:31.971] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdm_economy:update_server_data
+[10May2025 13:20:31.972] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_reload_config
+[10May2025 13:20:31.975] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id ftblibrary:sync_known_server_registries
+[10May2025 13:20:31.975] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_config
+[10May2025 13:20:31.978] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id ftblibrary:edit_config
+[10May2025 13:20:31.978] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_open_shop
+[10May2025 13:20:31.980] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_entry_limit
+[10May2025 13:20:31.983] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_shop_tab
+[10May2025 13:20:31.986] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_shop_entry
+[10May2025 13:20:31.989] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering S2C receiver with id sdmshoprework:send_clear_tab
+[10May2025 13:20:31.992] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_get_tabs
+[10May2025 13:20:31.994] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_get_entries
+[10May2025 13:20:31.995] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_buy_entry
+[10May2025 13:20:31.996] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:create_shop_tab
+[10May2025 13:20:31.998] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:create_shop_entry
+[10May2025 13:20:32.000] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_changes_shop
+[10May2025 13:20:32.003] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_change_entries
+[10May2025 13:20:32.005] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_change_tab
+[10May2025 13:20:32.006] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_get_money
+[10May2025 13:20:32.008] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_edit_tab
+[10May2025 13:20:32.010] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_edit_entry
+[10May2025 13:20:32.012] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_move_tab
+[10May2025 13:20:32.014] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_move_entry
+[10May2025 13:20:32.016] [modloading-worker-0/INFO] [dev.architectury.networking.forge.NetworkManagerImpl/]: Registering C2S receiver with id sdmshoprework:send_get_shop
+[10May2025 13:20:32.292] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[10May2025 13:20:32.310] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 16.49 ms
+[10May2025 13:20:33.138] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [jakes_custom_commands]
+[10May2025 13:20:33.298] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
+[10May2025 13:20:33.534] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[10May2025 13:20:33.586] [Worker-Main-7/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
+[10May2025 13:20:33.638] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: Start Initialization ImGuiHandler...
+[10May2025 13:20:33.880] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: ImGui context created!
+[10May2025 13:20:33.911] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: ImGui Fonts initialized!
+[10May2025 13:20:33.912] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: Main initialization complete!
+[10May2025 13:20:33.912] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: Initialization ImGui Glfw!
+[10May2025 13:20:33.927] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: Create ImNodes Context!
+[10May2025 13:20:33.942] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: Initializing ImGui Complete! WindowHandler: 1538196301568
+[10May2025 13:20:33.958] [Render thread/INFO] [net.sixik.sdm_core.SDMCore/]: ImGui successfully loaded!
+[10May2025 13:20:34.008] [Worker-Main-13/WARN] [net.minecraft.client.renderer.texture.SpriteLoader/]: Texture sdmshoprework:icons/staricon with size 9x9 limits mip level from 4 to 0
+[10May2025 13:20:34.378] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.3.10 Target: 47.4.0
+[10May2025 13:20:34.608] [Worker-Main-10/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'sdmshoprework:custom_icon#inventory' referenced from: sdmshoprework:custom_icon#inventory: java.io.FileNotFoundException: sdmshoprework:models/item/custom_icon.json
+[10May2025 13:20:36.450] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[10May2025 13:20:36.450] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[10May2025 13:20:36.451] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: sdmshoprework:cancel_sound
+[10May2025 13:20:36.488] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on SteelSeries Sonar - Gaming (SteelSeries Sonar Virtual Audio Device)
+[10May2025 13:20:36.488] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[10May2025 13:20:36.632] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/blocks.png-atlas
+[10May2025 13:20:36.643] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[10May2025 13:20:36.644] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[10May2025 13:20:36.645] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[10May2025 13:20:36.646] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[10May2025 13:20:36.651] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[10May2025 13:20:36.651] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[10May2025 13:20:36.652] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[10May2025 13:20:36.653] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[10May2025 13:20:37.018] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[10May2025 13:20:37.065] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/particles.png-atlas
+[10May2025 13:20:37.066] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[10May2025 13:20:37.067] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[10May2025 13:20:37.070] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 jei:textures/atlas/gui.png-atlas
+[10May2025 13:20:37.239] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id

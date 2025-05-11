@@ -45,11 +45,17 @@ public class BountyManager {
         }
     }
 
-    public static void addBounty(UUID targetId, UUID placerId, int amount, long expiryTimeMillis) {
+    public static void addBounty(UUID targetId, UUID placerId, int amount, long expiry, boolean isAdmin) {
         bounties.computeIfAbsent(targetId, k -> new ArrayList<>())
-                .add(new PlacedBountyObject(placerId, amount, expiryTimeMillis));
+                .add(new PlacedBountyObject(placerId, amount, expiry, isAdmin));
         save();
     }
+
+    // Convenience overload for non-admin
+    public static void addBounty(UUID targetId, UUID placerId, int amount, long expiry) {
+        addBounty(targetId, placerId, amount, expiry, false);
+    }
+
 
 
     public static int claimBounty(UUID targetId) {
@@ -102,12 +108,16 @@ public class BountyManager {
                     ServerPlayer target = server.getPlayerList().getPlayer(targetUUID);
                     ServerPlayer placer = server.getPlayerList().getPlayer(bounty.placer);
 
-                    if (placer != null) {
-                        CurrencyHelper.Basic.addMoney(placer, refund);
+                    if (!bounty.isAdmin) {
+                        if (placer != null) {
+                            CurrencyHelper.Basic.addMoney(placer, refund);
+                        } else {
+                            BountyPayoutQueueObject.queue(bounty.placer, refund);
+                        }
                     } else {
-                        BountyPayoutQueueObject.queue(bounty.placer, refund);
-                        LOGGER.info("Placer offline, queued refund: $" + refund);
+                        refund = 0; // Admins don't get money back
                     }
+
 
                     if (target != null) {
                         CurrencyHelper.Basic.addMoney(target, reward);
@@ -156,7 +166,19 @@ public class BountyManager {
         }
     }
 
+    public static void removeBounty(UUID targetId) {
+        bounties.remove(targetId);
+        save();
+    }
 
+    public static void setBountiesForPlayer(UUID playerId, List<PlacedBountyObject> newList) {
+        if (newList.isEmpty()) {
+            bounties.remove(playerId);
+        } else {
+            bounties.put(playerId, newList);
+        }
+        save();
+    }
 
 
 }

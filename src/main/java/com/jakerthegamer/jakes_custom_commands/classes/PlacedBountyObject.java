@@ -7,14 +7,17 @@ public class PlacedBountyObject {
     public int amount;
     public long timestamp;
     public long expiry;
+    public boolean isAdmin;
 
     public PlacedBountyObject() {}
 
-    public PlacedBountyObject(UUID placer, int amount, long expiry) {
+    public PlacedBountyObject(UUID placer, int amount, long expiry, boolean isAdmin) {
         this.placer = placer;
         this.amount = amount;
-        this.timestamp = System.currentTimeMillis();
         this.expiry = expiry;
+        this.timestamp = System.currentTimeMillis();
+        this.isAdmin = isAdmin;
     }
+
 }
 

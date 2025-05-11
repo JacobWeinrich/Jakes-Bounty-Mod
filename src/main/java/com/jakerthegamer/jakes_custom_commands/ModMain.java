@@ -42,10 +42,6 @@ public class ModMain {
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(new PvpKeepInventory());
     MinecraftForge.EVENT_BUS.register(new BountySystemEvents());
-    /*
-    MinecraftForge.EVENT_BUS.register(new TempBan());
-    MinecraftForge.EVENT_BUS.register(new LocalChat());
-     */
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
   }
@@ -68,21 +64,7 @@ public class ModMain {
     LOGGER.info("Jakes Custom Commands: Server starting: Initializing Mod");
     BountyManager.load();
     BountyPayoutQueueObject.load();
-    // Initialize Mod Systems
-    //TaxManager.initialize(event.getServer());
   }
-  /*
-  @SubscribeEvent
-  public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-    LOGGER.info("Jakes Custom Commands: Player Joined checking Ban");
-    if (event.getEntity() instanceof ServerPlayer player) {
-        TempBan.onPlayerJoin(player);
-      MinecraftServer server = player.getServer();
-    if (server != null & !TempBan.isBanned(player.getUUID())) {
-      server.getPlayerList().broadcastSystemMessage(Component.literal(player.getName().getString() + " has joined the server!"), false);
-    }
-    }
-    */
 
   /**
    * Registers commands for the mod
@@ -93,23 +75,6 @@ public class ModMain {
     PvpKeepInventory.register(event.getDispatcher());
     LOGGER.info("Jakes Custom Commands: Bounty Commands registered.");
     BountyCommands.register(event.getDispatcher());
-    /* Disabled
-    LOGGER.info("Jakes Custom Commands: TempBan Command Register.");
-    TempBan.register(event.getDispatcher());
-    LOGGER.info("Jakes Custom Commands: Local/Global Chat Commands Registered.");
-    LocalChat.registerCommands(event.getDispatcher());
-     */
-
   }
-/*
-  @SubscribeEvent
-  public void onServerChat(ServerChatEvent event) {
-    if (event.getMessage().getString().endsWith("joined the game")) {
-      event.setCanceled(true);
-    }
-    LocalChat.onServerChat(event);
-  }
- */
-
 
 }
