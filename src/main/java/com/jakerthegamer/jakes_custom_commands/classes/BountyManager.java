@@ -3,7 +3,6 @@ package com.jakerthegamer.jakes_custom_commands.classes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import net.sixik.sdm_economy.api.CurrencyHelper;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +14,7 @@ import java.io.FileWriter;
 import java.util.*;
 
 public class BountyManager {
-    private static final File FILE = new File("config/bounties.json");
+    private static final File FILE = new File("config/JakesCustomCommands/bounties.json");
     private static final Gson gson = new Gson();
     private static final Map<UUID, List<PlacedBountyObject>> bounties = new HashMap<>();
     public static final Logger LOGGER = LogManager.getLogger(); // [Guide: Logger for outputting debug/info messages.]
@@ -49,14 +48,13 @@ public class BountyManager {
         bounties.computeIfAbsent(targetId, k -> new ArrayList<>())
                 .add(new PlacedBountyObject(placerId, amount, expiry, isAdmin));
         save();
+        DiscordManager.updateBountyMessage();
     }
 
     // Convenience overload for non-admin
     public static void addBounty(UUID targetId, UUID placerId, int amount, long expiry) {
         addBounty(targetId, placerId, amount, expiry, false);
     }
-
-
 
     public static int claimBounty(UUID targetId) {
         List<PlacedBountyObject> bounties = BountyManager.bounties.get(targetId);
@@ -70,15 +68,16 @@ public class BountyManager {
         if (bounties.isEmpty()) {
             BountyManager.bounties.remove(targetId);
             save();
+            DiscordManager.updateBountyMessage();
             return 0;
         }
 
         int total = bounties.stream().mapToInt(b -> b.amount).sum();
         BountyManager.bounties.remove(targetId); // Claim clears it all
         save();
+        DiscordManager.updateBountyMessage();
         return total;
     }
-
 
     public static boolean hasBounty(UUID uuid) {
         return bounties.containsKey(uuid);
@@ -118,7 +117,6 @@ public class BountyManager {
                         refund = 0; // Admins don't get money back
                     }
 
-
                     if (target != null) {
                         CurrencyHelper.Basic.addMoney(target, reward);
                     } else {
@@ -139,8 +137,8 @@ public class BountyManager {
         }
 
         save();
+        DiscordManager.updateBountyMessage();
     }
-
 
     public static List<PlacedBountyObject> getRawBounties(UUID targetId) {
         return bounties.getOrDefault(targetId, Collections.emptyList());
@@ -169,6 +167,7 @@ public class BountyManager {
     public static void removeBounty(UUID targetId) {
         bounties.remove(targetId);
         save();
+        DiscordManager.updateBountyMessage();
     }
 
     public static void setBountiesForPlayer(UUID playerId, List<PlacedBountyObject> newList) {
@@ -178,7 +177,10 @@ public class BountyManager {
             bounties.put(playerId, newList);
         }
         save();
+        DiscordManager.updateBountyMessage();
     }
 
-
+    public static Map<UUID, List<PlacedBountyObject>> getAllBounties() {
+        return new HashMap<>(bounties);
+    }
 }

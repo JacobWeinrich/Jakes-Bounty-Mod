@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 import com.google.gson.reflect.TypeToken;
 
 public class PvpKeepInventory {
-    private static final Path DATA_FILE = Path.of("config/pvpkeepinv.json");
+    private static final Path DATA_FILE = Path.of("config/JakesCustomCommands/pvpkeepinv.json");
     private static final Type DATA_TYPE = new TypeToken<HashSet<UUID>>() {}.getType();
     private static final Set<UUID> enabledPlayers = DataManager.loadData(DATA_FILE, DATA_TYPE, new HashSet<>());
     private static final Map<UUID, Integer> activeTimers = new HashMap<>();

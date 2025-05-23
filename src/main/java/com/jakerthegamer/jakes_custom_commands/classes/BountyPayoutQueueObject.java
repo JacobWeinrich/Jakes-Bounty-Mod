@@ -16,7 +16,7 @@ import java.util.*;
 
 public class BountyPayoutQueueObject {
 
-    private static final File FILE = new File("config/bounty_payouts.json");
+    private static final File FILE = new File("config/JakesCustomCommands/bounty_payouts.json");
     private static final Gson gson = new Gson();
 
     private static final List<QueuedPayout> queue = new ArrayList<>();
