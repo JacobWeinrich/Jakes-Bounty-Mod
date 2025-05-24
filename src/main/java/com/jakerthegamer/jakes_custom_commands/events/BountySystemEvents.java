@@ -25,6 +25,7 @@ import java.util.UUID;
 public class BountySystemEvents {
 
     private long lastCheckTime = 0;
+    private static final long CHECK_INTERVAL = 60_000L; // Check every minute instead of every second
 
     @SubscribeEvent
     public void onServerTick(TickEvent.ServerTickEvent event) {
@@ -34,7 +35,7 @@ public class BountySystemEvents {
         if (server == null) return;
 
         long now = System.currentTimeMillis();
-        if (now - lastCheckTime >= 1_000L) {
+        if (now - lastCheckTime >= CHECK_INTERVAL) {
             BountyManager.processExpiredBounties(server);
             lastCheckTime = now;
         }

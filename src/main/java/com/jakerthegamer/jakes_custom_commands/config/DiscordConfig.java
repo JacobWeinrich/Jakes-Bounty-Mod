@@ -1,6 +1,7 @@
 package com.jakerthegamer.jakes_custom_commands.config;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,21 +10,30 @@ import java.io.*;
 public class DiscordConfig {
     private static final File CONFIG_FILE = new File("config/JakesCustomCommands/discord_config.json");
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private String botToken = "";
-    private String channelId = "";
-    private String bountyMessageId = "";
+    private String webhookUrl = "";
+    private String messageId = "";
 
     public static DiscordConfig load() {
         if (!CONFIG_FILE.exists()) {
             DiscordConfig config = new DiscordConfig();
+            config.webhookUrl = "REPLACE_WITH_YOUR_DISCORD_WEBHOOK_URL";
+            LOGGER.info("Creating new Discord config file at: " + CONFIG_FILE.getAbsolutePath());
             config.save();
             return config;
         }
 
         try (FileReader reader = new FileReader(CONFIG_FILE)) {
-            return gson.fromJson(reader, DiscordConfig.class);
+            DiscordConfig config = gson.fromJson(reader, DiscordConfig.class);
+            if (config == null) {
+                config = new DiscordConfig();
+            }
+            // If the config exists but has default/empty values, log a warning
+            if (config.webhookUrl.isEmpty() || config.webhookUrl.equals("REPLACE_WITH_YOUR_DISCORD_WEBHOOK_URL")) {
+                LOGGER.warn("Discord webhook not configured. Please edit config/JakesCustomCommands/discord_config.json and add your webhook URL");
+            }
+            return config;
         } catch (Exception e) {
             LOGGER.error("Failed to load Discord config", e);
             return new DiscordConfig();
@@ -34,16 +44,24 @@ public class DiscordConfig {
         CONFIG_FILE.getParentFile().mkdirs();
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             gson.toJson(this, writer);
+            LOGGER.info("Saved Discord config to: " + CONFIG_FILE.getAbsolutePath());
         } catch (Exception e) {
             LOGGER.error("Failed to save Discord config", e);
         }
     }
 
-    public String getBotToken() { return botToken; }
-    public String getChannelId() { return channelId; }
-    public String getBountyMessageId() { return bountyMessageId; }
-    public void setBountyMessageId(String id) { 
-        this.bountyMessageId = id;
+    public String getWebhookUrl() { 
+        return webhookUrl.equals("REPLACE_WITH_YOUR_DISCORD_WEBHOOK_URL") ? "" : webhookUrl; 
+    }
+    
+    public void setWebhookUrl(String url) {
+        this.webhookUrl = url;
+        save();
+    }
+
+    public String getMessageId() { return messageId; }
+    public void setMessageId(String id) {
+        this.messageId = id;
         save();
     }
 } 

@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import net.sixik.sdm_economy.api.CurrencyHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.jakerthegamer.jakes_custom_commands.discord.DiscordManager;
 
 import java.io.File;
 import java.io.FileReader;
