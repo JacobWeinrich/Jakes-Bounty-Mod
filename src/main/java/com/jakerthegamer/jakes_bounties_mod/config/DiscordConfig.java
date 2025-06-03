@@ -1,7 +1,8 @@
-package com.jakerthegamer.jakes_custom_commands.config;
+package com.jakerthegamer.jakes_bounties_mod.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jakerthegamer.jakes_bounties_mod.helpers.DebugLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,7 +36,7 @@ public class DiscordConfig {
             }
             return config;
         } catch (Exception e) {
-            LOGGER.error("Failed to load Discord config", e);
+            DebugLogger.error("Failed to load Discord config", e,true);
             return new DiscordConfig();
         }
     }
@@ -44,9 +45,9 @@ public class DiscordConfig {
         CONFIG_FILE.getParentFile().mkdirs();
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             gson.toJson(this, writer);
-            LOGGER.info("Saved Discord config to: " + CONFIG_FILE.getAbsolutePath());
+            DebugLogger.info("Saved Discord config to: " + CONFIG_FILE.getAbsolutePath());
         } catch (Exception e) {
-            LOGGER.error("Failed to save Discord config", e);
+            DebugLogger.error("Failed to save Discord config", e,true);
         }
     }
 

@@ -1,5 +1,6 @@
-package com.jakerthegamer.jakes_custom_commands.classes;
+package com.jakerthegamer.jakes_bounties_mod.classes;
 
+import com.jakerthegamer.jakes_bounties_mod.helpers.DebugLogger;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -7,7 +8,7 @@ import com.google.gson.Gson;
 import net.sixik.sdm_economy.api.CurrencyHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.jakerthegamer.jakes_custom_commands.discord.DiscordManager;
+import com.jakerthegamer.jakes_bounties_mod.discord.DiscordManager;
 
 import java.io.File;
 import java.io.FileReader;
@@ -33,7 +34,7 @@ public class BountyManager {
                 reader.close();
             }
         } catch (Exception e) {
-            LOGGER.error("Failed to load bounty data", e);
+            DebugLogger.error("Failed to load bounty data", e, true);
         }
     }
 
@@ -41,7 +42,7 @@ public class BountyManager {
         try (FileWriter writer = new FileWriter(FILE)) {
             gson.toJson(bounties, writer);
         } catch (Exception e) {
-            LOGGER.error("Failed to save bounty data", e);
+            DebugLogger.error("Failed to save bounty data", e, true);
         }
     }
 
@@ -122,10 +123,10 @@ public class BountyManager {
                         CurrencyHelper.Basic.addMoney(target, reward);
                     } else {
                         BountyPayoutQueueObject.queue(targetUUID, reward);
-                        LOGGER.info("Target offline, queued reward: $" + reward);
+                        DebugLogger.info("Target offline, queued reward: $" + reward);
                     }
 
-                    LOGGER.info("Expired bounty on " + targetUUID + ": $" + bounty.amount +
+                    DebugLogger.info("Expired bounty on " + targetUUID + ": $" + bounty.amount +
                             " → $" + refund + " to placer, $" + reward + " to target.");
 
                     bountyIter.remove();

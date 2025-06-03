@@ -1,25 +1,18 @@
-package com.jakerthegamer.jakes_custom_commands.events;
+package com.jakerthegamer.jakes_bounties_mod.events;
 
-import com.jakerthegamer.jakes_custom_commands.classes.BountyManager;
-import com.jakerthegamer.jakes_custom_commands.classes.BountyPayoutQueueObject;
-import com.jakerthegamer.jakes_custom_commands.classes.BountyTracker;
+import com.jakerthegamer.jakes_bounties_mod.classes.BountyManager;
+import com.jakerthegamer.jakes_bounties_mod.classes.BountyTracker;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.common.util.LogicalSidedProvider;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.sixik.sdm_economy.api.CurrencyHelper;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class BountySystemEvents {

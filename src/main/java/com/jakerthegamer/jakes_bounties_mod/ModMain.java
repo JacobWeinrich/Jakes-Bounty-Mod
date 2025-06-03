@@ -1,12 +1,11 @@
-package com.jakerthegamer.jakes_custom_commands;
+package com.jakerthegamer.jakes_bounties_mod;
 
-import com.jakerthegamer.jakes_custom_commands.classes.BountyManager;
-import com.jakerthegamer.jakes_custom_commands.classes.BountyPayoutQueueObject;
-import com.jakerthegamer.jakes_custom_commands.commands.BountyCommands;
-import com.jakerthegamer.jakes_custom_commands.commands.PvpKeepInventory;
-import com.jakerthegamer.jakes_custom_commands.discord.DiscordManager;
-import com.jakerthegamer.jakes_custom_commands.events.BountySystemEvents;
-import net.minecraft.client.Minecraft;
+import com.jakerthegamer.jakes_bounties_mod.classes.BountyManager;
+import com.jakerthegamer.jakes_bounties_mod.classes.BountyPayoutQueueObject;
+import com.jakerthegamer.jakes_bounties_mod.commands.BountyCommands;
+import com.jakerthegamer.jakes_bounties_mod.commands.PvpKeepInventory;
+import com.jakerthegamer.jakes_bounties_mod.discord.DiscordManager;
+import com.jakerthegamer.jakes_bounties_mod.events.BountySystemEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -28,7 +27,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(ModMain.MODID)
 public class ModMain {
 
-  public static final String MODID = "jakes_custom_commands"; // [Guide: Unique identifier for your mod; must be all lowercase.]
+  public static final String MODID = "jakes_bounties_mod"; // [Guide: Unique identifier for your mod; must be all lowercase.]
   public static final Logger LOGGER = LogManager.getLogger(); // [Guide: Logger for outputting debug/info messages.]
 
   public ModMain() {
@@ -63,11 +62,11 @@ public class ModMain {
    */
   @SubscribeEvent
   public void onServerStarting(ServerStartingEvent event) {
-    LOGGER.info("Jakes Custom Commands: Server starting: Initializing Mod");
+    LOGGER.info("Jakes Bounties Mod: Server starting: Initializing Mod");
     BountyManager.load();
     BountyPayoutQueueObject.load();
     DiscordManager.initialize();
-    LOGGER.info("Jakes Custom Commands: Discord webhook initialized");
+    LOGGER.info("Jakes Bounties Mod: Discord webhook initialized");
   }
 
   /**
@@ -75,9 +74,9 @@ public class ModMain {
    */
   @SubscribeEvent
   public void onRegisterCommands(RegisterCommandsEvent event) {
-    LOGGER.info("Jakes Custom Commands: TogglePvpKeepInv Command registered.");
+    LOGGER.info("Jakes Bounties Mod: TogglePvpKeepInv Command registered.");
     PvpKeepInventory.register(event.getDispatcher());
-    LOGGER.info("Jakes Custom Commands: Bounty Commands registered.");
+    LOGGER.info("Jakes Bounties Mod: Bounty Commands registered.");
     BountyCommands.register(event.getDispatcher());
   }
 

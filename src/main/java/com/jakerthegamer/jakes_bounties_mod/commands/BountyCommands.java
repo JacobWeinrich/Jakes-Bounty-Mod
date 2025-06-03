@@ -1,9 +1,9 @@
-package com.jakerthegamer.jakes_custom_commands.commands;
+package com.jakerthegamer.jakes_bounties_mod.commands;
 
-import com.jakerthegamer.jakes_custom_commands.DataTypeHelper;
-import com.jakerthegamer.jakes_custom_commands.classes.BountyManager;
-import com.jakerthegamer.jakes_custom_commands.classes.BountyPayoutQueueObject;
-import com.jakerthegamer.jakes_custom_commands.classes.PlacedBountyObject;
+import com.jakerthegamer.jakes_bounties_mod.DataTypeHelper;
+import com.jakerthegamer.jakes_bounties_mod.classes.BountyManager;
+import com.jakerthegamer.jakes_bounties_mod.classes.BountyPayoutQueueObject;
+import com.jakerthegamer.jakes_bounties_mod.classes.PlacedBountyObject;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -17,14 +17,11 @@ import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.server.permission.PermissionAPI;
 import net.sixik.sdm_economy.api.CurrencyHelper;
-import net.sixik.sdm_economy.common.cap.MoneyData;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class BountyCommands {
@@ -42,7 +39,7 @@ public class BountyCommands {
                                             int amount = IntegerArgumentType.getInteger(context, "amount");
                                             String durationStr = StringArgumentType.getString(context, "duration");
 
-                                            long durationSeconds = com.jakerthegamer.jakes_custom_commands.DataTypeHelper.parseDuration(durationStr);
+                                            long durationSeconds = com.jakerthegamer.jakes_bounties_mod.DataTypeHelper.parseDuration(durationStr);
 
 
                                             if (durationSeconds < 28800) { // Minimum 8 hours
@@ -97,7 +94,7 @@ public class BountyCommands {
                                             int amount = IntegerArgumentType.getInteger(context, "amount");
                                             String durationStr = StringArgumentType.getString(context, "duration");
 
-                                            long durationSeconds = com.jakerthegamer.jakes_custom_commands.DataTypeHelper.parseDuration(durationStr);
+                                            long durationSeconds = com.jakerthegamer.jakes_bounties_mod.DataTypeHelper.parseDuration(durationStr);
 
                                             if (durationSeconds < 10) {
                                                 context.getSource().sendFailure(

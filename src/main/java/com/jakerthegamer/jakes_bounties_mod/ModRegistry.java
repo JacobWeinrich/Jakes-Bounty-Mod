@@ -1,4 +1,4 @@
-package com.jakerthegamer.jakes_custom_commands;
+package com.jakerthegamer.jakes_bounties_mod;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

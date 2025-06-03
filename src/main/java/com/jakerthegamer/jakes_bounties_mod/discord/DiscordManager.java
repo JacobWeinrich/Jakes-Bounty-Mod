@@ -1,8 +1,9 @@
-package com.jakerthegamer.jakes_custom_commands.discord;
+package com.jakerthegamer.jakes_bounties_mod.discord;
 
-import com.jakerthegamer.jakes_custom_commands.config.DiscordConfig;
-import com.jakerthegamer.jakes_custom_commands.classes.BountyManager;
-import com.jakerthegamer.jakes_custom_commands.classes.PlacedBountyObject;
+import com.jakerthegamer.jakes_bounties_mod.config.DiscordConfig;
+import com.jakerthegamer.jakes_bounties_mod.classes.BountyManager;
+import com.jakerthegamer.jakes_bounties_mod.classes.PlacedBountyObject;
+import com.jakerthegamer.jakes_bounties_mod.helpers.DebugLogger;
 import net.minecraft.server.MinecraftServer;
 import com.mojang.authlib.GameProfile;
 import net.minecraftforge.server.ServerLifecycleHooks;
@@ -25,7 +26,7 @@ public class DiscordManager {
         config = DiscordConfig.load();
         
         if (config.getWebhookUrl().isEmpty()) {
-            LOGGER.warn("Discord webhook not configured. Please set webhook URL in config/JakesCustomCommands/discord_config.json");
+            DebugLogger.warn("Discord webhook not configured. Please set webhook URL in config/JakesCustomCommands/discord_config.json");
             return;
         }
         
@@ -46,19 +47,19 @@ public class DiscordManager {
         conn.setRequestMethod("DELETE");
         
         int responseCode = conn.getResponseCode();
-        LOGGER.info("Discord API response code (delete): " + responseCode);
+        DebugLogger.info("Discord API response code (delete): " + responseCode);
         
         if (responseCode != 204) {
             InputStream errorStream = conn.getErrorStream();
             if (errorStream != null) {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(errorStream))) {
                     String error = br.readLine();
-                    LOGGER.error("Failed to delete message. Error: " + error);
+                    DebugLogger.error("Failed to delete message. Error: " + error, true);
                 } catch (Exception e) {
-                    LOGGER.error("Failed to read error stream", e);
+                    DebugLogger.error("Failed to read error stream", e, true);
                 }
             } else {
-                LOGGER.error("Failed to delete message. Response code: " + responseCode);
+                DebugLogger.error("Failed to delete message. Response code: " + responseCode, true);
             }
         }
     }
@@ -82,12 +83,12 @@ public class DiscordManager {
         }
 
         int responseCode = conn.getResponseCode();
-        LOGGER.info("Discord API response code (create): " + responseCode);
+        DebugLogger.info("Discord API response code (create): " + responseCode);
 
         if (responseCode == 200) {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
                 String response = br.readLine();
-                LOGGER.debug("Discord API response: " + response);
+                DebugLogger.debug("Discord API response: " + response);
                 JsonObject jsonResponse = JsonParser.parseString(response).getAsJsonObject();
                 return jsonResponse.get("id").getAsString();
             }
@@ -96,12 +97,12 @@ public class DiscordManager {
             if (errorStream != null) {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(errorStream))) {
                     String error = br.readLine();
-                    LOGGER.error("Failed to create message. Error: " + error);
+                    DebugLogger.error("Failed to create message. Error: " + error, true);
                 } catch (Exception e) {
-                    LOGGER.error("Failed to read error stream", e);
+                    DebugLogger.error("Failed to read error stream", e, true);
                 }
             } else {
-                LOGGER.error("Failed to create message. Response code: " + responseCode);
+                DebugLogger.error("Failed to create message. Response code: " + responseCode, true);
             }
             return null;
         }
@@ -159,7 +160,7 @@ public class DiscordManager {
                     config.setMessageId("");
                     config.save();
                 } catch (Exception e) {
-                    LOGGER.error("Failed to delete old message", e);
+                    DebugLogger.error("Failed to delete old message", e, true);
                     // Continue anyway to try creating a new message
                 }
             }
@@ -168,10 +169,10 @@ public class DiscordManager {
             String newMessageId = createMessage(webhookUrl, jsonBuilder.toString());
             if (newMessageId != null) {
                 config.setMessageId(newMessageId);
-                LOGGER.info("Created new Discord message with ID: " + newMessageId);
+                DebugLogger.info("Created new Discord message with ID: " + newMessageId);
             }
         } catch (Exception e) {
-            LOGGER.error("Failed to update Discord message", e);
+            DebugLogger.error("Failed to update Discord message", e, true);
             e.printStackTrace();
         }
     }

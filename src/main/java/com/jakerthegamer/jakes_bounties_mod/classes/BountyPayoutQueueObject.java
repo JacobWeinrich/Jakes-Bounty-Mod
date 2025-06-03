@@ -1,11 +1,9 @@
-package com.jakerthegamer.jakes_custom_commands.classes;
+package com.jakerthegamer.jakes_bounties_mod.classes;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.jakerthegamer.jakes_custom_commands.classes.QueuedPayout;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.server.ServerLifecycleHooks;
 import net.sixik.sdm_economy.api.CurrencyHelper;
 
 import java.io.File;

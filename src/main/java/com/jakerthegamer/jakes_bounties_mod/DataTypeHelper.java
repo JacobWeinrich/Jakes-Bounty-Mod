@@ -1,11 +1,7 @@
-package com.jakerthegamer.jakes_custom_commands;
-
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.common.ForgeConfig;
+package com.jakerthegamer.jakes_bounties_mod;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.UUID;
 
 public class DataTypeHelper {
 

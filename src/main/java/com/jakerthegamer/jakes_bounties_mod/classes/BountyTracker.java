@@ -1,4 +1,4 @@
-package com.jakerthegamer.jakes_custom_commands.classes;
+package com.jakerthegamer.jakes_bounties_mod.classes;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,10 +1,12 @@
-package com.jakerthegamer.jakes_custom_commands.commands;
+package com.jakerthegamer.jakes_bounties_mod.commands;
 
-import com.jakerthegamer.jakes_custom_commands.DataManager;
+import com.jakerthegamer.jakes_bounties_mod.DataManager;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.GameProfileArgument;
@@ -12,8 +14,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -33,7 +33,7 @@ public class PvpKeepInventory {
     private static final Path DATA_FILE = Path.of("config/JakesCustomCommands/pvpkeepinv.json");
     private static final Type DATA_TYPE = new TypeToken<HashSet<UUID>>() {}.getType();
     private static final Set<UUID> enabledPlayers = DataManager.loadData(DATA_FILE, DATA_TYPE, new HashSet<>());
-    private static final Map<UUID, Integer> activeTimers = new HashMap<>();
+    private static final Map<UUID, Long> activeTimers = new HashMap<>();
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -42,23 +42,27 @@ public class PvpKeepInventory {
                 .requires(source -> source.hasPermission(2)) // Requires OP level 2+
                 .then(Commands.argument("player", GameProfileArgument.gameProfile())
                         .then(Commands.literal("true")
-                                .executes(ctx -> toggleKeepInventory(ctx.getSource(), GameProfileArgument.getGameProfiles(ctx, "player").iterator().next(), -1, true))) // Enable permanently
-                        .then(Commands.argument("duration", IntegerArgumentType.integer(1))
+                                .executes(ctx -> toggleKeepInventory(ctx.getSource(), GameProfileArgument.getGameProfiles(ctx, "player").iterator().next(), -1l, true))) // Enable permanently
+                        .then(Commands.literal("false")
+                                .executes(ctx -> toggleKeepInventory(ctx.getSource(), GameProfileArgument.getGameProfiles(ctx, "player").iterator().next(), -1l, false))) // Disable
+                        .then(Commands.argument("duration", StringArgumentType.word())
                                 .executes(ctx -> {
-                                    int duration = IntegerArgumentType.getInteger(ctx, "duration");
+                                    String durationStr = StringArgumentType.getString(ctx, "duration");
+                                    Long duration = com.jakerthegamer.jakes_bounties_mod.DataTypeHelper.parseDuration(durationStr);
+                                    if (duration < 1) {
+                                        ctx.getSource().sendFailure(
+                                                net.minecraft.network.chat.Component.literal("Invalid duration format. Use something like 1d, 12h, 30m.").withStyle(ChatFormatting.YELLOW));
+                                        return 0;
+                                    }
                                     return toggleKeepInventory(ctx.getSource(), GameProfileArgument.getGameProfiles(ctx, "player").iterator().next(), duration, true);
                                 })
                         )
-                )
-                .then(Commands.literal("false")
-                        .then(Commands.argument("player", GameProfileArgument.gameProfile())
-                                .executes(ctx -> toggleKeepInventory(ctx.getSource(), GameProfileArgument.getGameProfiles(ctx, "player").iterator().next(), -1, false))) // Disable
                 )
         );
     }
 
 
-    private static int toggleKeepInventory(CommandSourceStack source, GameProfile targetProfile, int duration, boolean enable) {
+    private static int toggleKeepInventory(CommandSourceStack source, GameProfile targetProfile, Long duration, boolean enable) {
         ServerPlayer targetPlayer = source.getServer().getPlayerList().getPlayer(targetProfile.getId());
 
         if (targetPlayer != null) {

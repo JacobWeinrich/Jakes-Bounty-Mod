@@ -1,15 +1,13 @@
-package com.jakerthegamer.jakes_custom_commands;
+package com.jakerthegamer.jakes_bounties_mod;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
 
 import static net.minecraftforge.fml.loading.FMLPaths.CONFIGDIR;
-import static net.minecraftforge.fml.loading.FMLPaths.setup;
 
 /* [Guide: ConfigManager.java handles your mod’s configuration settings.
    - It uses ForgeConfigSpec to create a configuration file that users can modify.
