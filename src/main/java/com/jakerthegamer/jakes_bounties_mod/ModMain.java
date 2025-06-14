@@ -38,7 +38,6 @@ public class ModMain {
     //ModRegistry.ITEMS.register(eventBus);
     //ModRegistry.TILE_ENTITIES.register(eventBus);
     // [Guide: Initialize the configuration settings for your mod.]
-    new ConfigManager();
     // [Guide: Add listeners for common and client-specific setup events.]
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(new PvpKeepInventory());

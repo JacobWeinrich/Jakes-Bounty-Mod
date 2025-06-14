@@ -1,5 +1,6 @@
 package com.jakerthegamer.jakes_bounties_mod.classes;
 
+import com.jakerthegamer.jakes_bounties_mod.commands.PvpKeepInventory;
 import com.jakerthegamer.jakes_bounties_mod.helpers.DebugLogger;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -51,6 +52,10 @@ public class BountyManager {
                 .add(new PlacedBountyObject(placerId, amount, expiry, isAdmin));
         save();
         DiscordManager.updateBountyMessage();
+        if (isAdmin)
+        {
+            PvpKeepInventory.setPlayerPvpKeepInventory(targetId, true, expiry);
+        }
     }
 
     // Convenience overload for non-admin
@@ -71,11 +76,13 @@ public class BountyManager {
             BountyManager.bounties.remove(targetId);
             save();
             DiscordManager.updateBountyMessage();
+            PvpKeepInventory.setPlayerPvpKeepInventory(targetId, false, 0);
             return 0;
         }
 
         int total = bounties.stream().mapToInt(b -> b.amount).sum();
         BountyManager.bounties.remove(targetId); // Claim clears it all
+        PvpKeepInventory.setPlayerPvpKeepInventory(targetId, false, 0);
         save();
         DiscordManager.updateBountyMessage();
         return total;
@@ -135,6 +142,7 @@ public class BountyManager {
 
             if (bountyList.isEmpty()) {
                 iterator.remove();
+                PvpKeepInventory.setPlayerPvpKeepInventory(targetUUID, false, 0);
             }
         }
 
@@ -168,6 +176,7 @@ public class BountyManager {
 
     public static void removeBounty(UUID targetId) {
         bounties.remove(targetId);
+        PvpKeepInventory.setPlayerPvpKeepInventory(targetId, false, 0);
         save();
         DiscordManager.updateBountyMessage();
     }
@@ -175,8 +184,14 @@ public class BountyManager {
     public static void setBountiesForPlayer(UUID playerId, List<PlacedBountyObject> newList) {
         if (newList.isEmpty()) {
             bounties.remove(playerId);
+            PvpKeepInventory.setPlayerPvpKeepInventory(playerId, false, 0);
         } else {
             bounties.put(playerId, newList);
+            long maxExpiry = newList.stream()
+                    .mapToLong(b -> b.expiry)
+                    .max()
+                    .orElse(0);
+            PvpKeepInventory.setPlayerPvpKeepInventory(playerId, true, maxExpiry);
         }
         save();
         DiscordManager.updateBountyMessage();
