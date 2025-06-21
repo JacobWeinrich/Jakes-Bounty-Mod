@@ -30,6 +30,8 @@ public class ModMain {
   public static final String MODID = "jakes_bounties_mod"; // [Guide: Unique identifier for your mod; must be all lowercase.]
   public static final Logger LOGGER = LogManager.getLogger(); // [Guide: Logger for outputting debug/info messages.]
 
+  public static String ConfigFolder = "config/jakes_bounties_mod"; // [Guide: Folder name for storing mod configuration files.]
+
   public ModMain() {
     // [Guide: Retrieve the mod event bus for registering events during mod loading.]
     IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();

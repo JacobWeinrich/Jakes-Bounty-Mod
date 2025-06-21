@@ -10,6 +10,7 @@ import net.sixik.sdm_economy.api.CurrencyHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.jakerthegamer.jakes_bounties_mod.discord.DiscordManager;
+import static com.jakerthegamer.jakes_bounties_mod.ModMain.ConfigFolder;
 
 import java.io.File;
 import java.io.FileReader;
@@ -17,7 +18,7 @@ import java.io.FileWriter;
 import java.util.*;
 
 public class BountyManager {
-    private static final File FILE = new File("config/JakesCustomCommands/bounties.json");
+    private static final File FILE = new File(ConfigFolder + "/bounties.json");
     private static final Gson gson = new Gson();
     private static final Map<UUID, List<PlacedBountyObject>> bounties = new HashMap<>();
     public static final Logger LOGGER = LogManager.getLogger(); // [Guide: Logger for outputting debug/info messages.]

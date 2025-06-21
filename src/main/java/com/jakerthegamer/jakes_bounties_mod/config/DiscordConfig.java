@@ -5,11 +5,12 @@ import com.google.gson.GsonBuilder;
 import com.jakerthegamer.jakes_bounties_mod.helpers.DebugLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import static com.jakerthegamer.jakes_bounties_mod.ModMain.ConfigFolder;
 
 import java.io.*;
 
 public class DiscordConfig {
-    private static final File CONFIG_FILE = new File("config/JakesCustomCommands/discord_config.json");
+    private static final File CONFIG_FILE = new File(ConfigFolder + "/discord_config.json");
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 

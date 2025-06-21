@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
 import net.sixik.sdm_economy.api.CurrencyHelper;
+import static com.jakerthegamer.jakes_bounties_mod.ModMain.ConfigFolder;
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,7 +15,7 @@ import java.util.*;
 
 public class BountyPayoutQueueObject {
 
-    private static final File FILE = new File("config/JakesCustomCommands/bounty_payouts.json");
+    private static final File FILE = new File(ConfigFolder + "/bounty_payouts.json");
     private static final Gson gson = new Gson();
 
     private static final List<QueuedPayout> queue = new ArrayList<>();
